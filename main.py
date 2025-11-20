@@ -17,7 +17,7 @@ class Puzzle:
         self.question = question
         self.answer = answer
         self.success_message = success_message
-        self.image = image 
+    
 
 class PuzzleGame:
     def __init__(self, puzzles):
@@ -45,10 +45,16 @@ class PuzzleGame:
 # 퍼즐 만들기
 puzzle1 = Puzzle(
     title="문제 1",
-    question="1 + 2 = ?",
+    question="도로 위 신호등은 전기패널로 작동하는데, 여기에는 빨강, 노랑, 파랑 신호등이 있습니다.
+    신호등이 작동되는 규칙이 있습니다.
+    1. 빨강은 파랑보다 먼저 켜야 합니다.
+    2. 노랑은 빨강과 동시에 켤 수 없습니다.
+    3. 파랑은 노랑이 꺼진 직후 켜집니다.
+    
+    이때, 빨강이 켜진 순간 나머지 두 신호등의 상태는 무엇인가요? ",
     answer="3",
     success_message="정답입니다!"
-    image="images/puzzle1.png"
+
 )
 
 puzzle2 = Puzzle(
@@ -56,7 +62,7 @@ puzzle2 = Puzzle(
     question="2 * 5",
     answer="10",
     success_message="정답입니다!"
-    image="images/puzzle2.png"
+
 )
 
 puzzle3 = Puzzle(
@@ -64,7 +70,7 @@ puzzle3 = Puzzle(
     question="우리 학교 이름은?",
     answer="남한고",
     success_message="정답입니다!"
-    image="images/puzzle3.png"
+
 )
 
 # 세션 초기화 
@@ -81,9 +87,6 @@ if not game.game_over:
     current = game.current_puzzle()
     st.subheader(current.title)
 
-    if current.image:
-        st.image(current.image, use_column_width=True)
-    st.write(current.question)
 
     # 정답 학인
     answer = st.chat_input("정답을 입력하세요")
