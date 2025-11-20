@@ -42,8 +42,10 @@ class PuzzleGame:
             self.current_index += 1
             if self.current_index >= len(self.puzzles):
                 self.game_over = True
-                # ⭐ 마지막 퍼즐 정답 시, 게임 종료 메시지를 명확히 반환
-                return current.success_message + "\n\n🎉 모든 퍼즐을 해결했습니다!"
+               
+                return current.success_message + """\n\n🎉 모든 퍼즐을 해결했습니다!
+                비밀번호는 7932 입니다
+                """
             else:
                 return current.success_message + "\n\n👉 다음 퍼즐로 이동합니다!"
         else:
