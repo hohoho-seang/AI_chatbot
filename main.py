@@ -29,30 +29,7 @@ class PuzzleGame:
         return self.puzzles[self.current_index]
 
     def check_answer(self, user_answer):
-        current = self.current_puzzle()
-        if user_answer.strip() == current.answer:
-            self.current_index += 1
-            if self.current_index >= len(self.puzzles):
-                self.game_over = True
-                return  None
-            else:
-                return current.success_message + "\n\n👉 다음 퍼즐로 이동합니다!"
-        else:
-            return "❌ 오답입니다. 다시 시도하세요!"
-
-
-
-# 퍼즐 만들기
-puzzle1 = Puzzle(
-    title="문제 1",
-    question="도로 위 신호등은 전기패널로 작동하는데, 여기에는 빨강, 노랑, 파랑 신호등이 있습니다.
-    신호등이 작동되는 규칙이 있습니다.
-    1. 빨강은 파랑보다 먼저 켜야 합니다.
-    2. 노랑은 빨강과 동시에 켤 수 없습니다.
-    3. 파랑은 노랑이 꺼진 직후 켜집니다.
-    
-    이때, 빨강이 켜진 순간 나머지 두 신호등의 상태는 무엇인가요? ",
-    answer="3",
+        current = self.curr짐",
     success_message="정답입니다!"
 
 )
