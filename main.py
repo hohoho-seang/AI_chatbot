@@ -110,7 +110,7 @@ puzzle4 = Puzzle(
 
 # 세션 초기화 
 if "puzzle_game" not in st.session_state:
-    st.session_state.puzzle_game = PuzzleGame([puzzle1, puzzle2, puzzle3])
+    st.session_state.puzzle_game = PuzzleGame([puzzle1, puzzle2, puzzle3, puzzle4])
     st.session_state.chat_history = [puzzle1.question]
 
 game = st.session_state.puzzle_game
