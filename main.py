@@ -39,12 +39,22 @@ class PuzzleGame:
         else:
             return "❌ 오답입니다. 다시 시도하세요!"
 
+
+class Puzzle:
+    def __init__(self, title, question, answer, success_message, image=None):
+        self.title = title
+        self.question = question
+        self.answer = answer
+        self.success_message = success_message
+        self.image = image 
+
 # 퍼즐 만들기
 puzzle1 = Puzzle(
     title="문제 1",
     question="1 + 2 = ?",
     answer="3",
     success_message="정답입니다!"
+    image="images/puzzle1.png"
 )
 
 puzzle2 = Puzzle(
@@ -52,6 +62,7 @@ puzzle2 = Puzzle(
     question="2 * 5",
     answer="10",
     success_message="정답입니다!"
+    image="images/puzzle2.png"
 )
 
 puzzle3 = Puzzle(
@@ -59,6 +70,7 @@ puzzle3 = Puzzle(
     question="우리 학교 이름은?",
     answer="남한고",
     success_message="정답입니다!"
+    image="images/puzzle3.png"
 )
 
 # 세션 초기화 
@@ -74,6 +86,9 @@ st.title("🔐 AI 방탈출 퀴즈")
 if not game.game_over:
     current = game.current_puzzle()
     st.subheader(current.title)
+
+    if current.image:
+        st.image(current.image, use_column_width=True)
     st.write(current.question)
 
     # 정답 학인
