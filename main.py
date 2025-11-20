@@ -2,7 +2,7 @@ import google.generativeai as genai
 import streamlit as st
 
 # Gemini 설정
-genai.configure(api_key="YOUR_API_KEY")
+genai.configure(api_key="AIzaSyBUb315t4UmesRgf3xhNnyW15yFh_0KO1M")
 
 @st.cache_resource
 def load_model():
