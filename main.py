@@ -29,7 +29,7 @@ class PuzzleGame:
         return self.puzzles[self.current_index]
 
     def check_answer(self, user_answer):
-        current = self.curr짐",
+        current = self.current",
     success_message="정답입니다!"
 
 )
