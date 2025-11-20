@@ -14,11 +14,12 @@ model = load_model()
 
 # Puzzle 클래스
 class Puzzle:
-    def __init__(self, title, question, answer, success_message):
+    def __init__(self, title, question, answer, success_message, hint_template):
         self.title = title
         self.question = question
         self.answer = answer
         self.success_message = success_message
+        self.hint_template = hint_template
 
 
 class PuzzleGame:
@@ -46,7 +47,7 @@ class PuzzleGame:
             return "❌ 오답입니다. 다시 시도하세요!"
 
 
-# 퍼즐 만들기
+# 퍼즐 만들기 (힌트 템플릿 포함)
 puzzle1 = Puzzle(
     title="문제 1",
     question="""전기 패널에는 빨강, 노랑, 파랑 신호등이 있습니다.
@@ -57,22 +58,26 @@ puzzle1 = Puzzle(
 
 빨강이 켜진 순간, 나머지 두 신호등의 상태는 무엇인가요?(노랑 파랑 순서대로 꺼짐/켜짐 으로 입력 )""",
     answer="꺼짐 꺼짐",
-    success_message="정답입니다!"
+    success_message="정답입니다!",
+    hint_template="규칙을 떠올릴 수 있도록 논리적인 힌트를 한 줄로 주세요. 정답은 직접 말하지 마세요."
 )
 
 puzzle2 = Puzzle(
     title="문제 2",
     question="2 * 5 = ?",
     answer="10",
-    success_message="정답입니다!"
+    success_message="정답입니다!",
+    hint_template="초등학생에게 설명하듯 간단하고 쉬운 힌트를 한 줄로 주세요."
 )
 
 puzzle3 = Puzzle(
     title="문제 3",
     question="우리 학교 이름은?",
     answer="남한고",
-    success_message="정답입니다!"
+    success_message="정답입니다!",
+    hint_template="기억을 떠올릴 수 있도록 재치있는 힌트를 한 줄로 주세요."
 )
+
 
 # 세션 초기화
 if "puzzle_game" not in st.session_state:
@@ -98,10 +103,13 @@ if not game.game_over:
         if result and "오답" in result:
             st.error(result)
 
+            # 퍼즐별 힌트 프롬프트 생성
             hint_prompt = (
-                f"퍼즐 문제: {current.question}\n\n"
-                f"정답은 '{current.answer}'이고, 학생 답은 '{answer}'입니다. "
-                f"학생에게 바로 답을 주지 말고, 간접적인 힌트를 한 줄로 생성하세요."
+                f"[힌트 스타일]\n{current.hint_template}\n\n"
+                f"[퍼즐 문제]\n{current.question}\n\n"
+                f"[정답]\n{current.answer} (학생에게 알려주지 마세요)\n"
+                f"[학생의 입력]\n{answer}\n\n"
+                f"위 정보를 참고하여 정답을 직접 말하지 않고, 간접적인 힌트를 한 줄로 작성하세요."
             )
 
             try:
