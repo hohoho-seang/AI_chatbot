@@ -100,7 +100,7 @@ if not game.game_over:
 
             hint_prompt = (
                 f"퍼즐 문제: {current.question}\n\n"
-                f"정답은 '{current.answer}'이고, 사용자 답은 '{answer}'입니다. "
+                f"정답은 '{current.answer}'입니다. "
                 f"학생에게 바로 답을 주지 말고, 간접적인 힌트를 한 줄로 생성하세요."
             )
 
