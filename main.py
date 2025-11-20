@@ -46,8 +46,8 @@ class PuzzleGame:
 # 퍼즐 만들기
 puzzle1 = Puzzle(
     title="문제 1",
-    question="11",
-    answer="11",
+    question="우리 학교 이름은?",
+    answer="남한고등학교",
     success_message="정답입니다!"
 )
 
@@ -96,9 +96,15 @@ puzzle3 = Puzzle(
 )
 
 puzzle4 = Puzzle(
-    title="문제 4",
-    question="우리 학교 이름은?",
-    answer="남한고",
+    title="문제 1",
+    question="""전기 패널에는 빨강, 노랑, 파랑 신호등이 있습니다.
+규칙 :
+1. 빨강은 파랑보다 먼저 켜야 합니다.
+2. 노랑은 빨강과 동시에 켤 수 없습니다.
+3. 파랑은 노랑이 꺼진 직후에 켜집니다.
+
+빨강이 켜진 순간, 나머지 두 신호등의 상태는 무엇인가요?(노랑 파랑 순서대로 꺼짐/켜짐 으로 입력 )""",
+    answer="꺼짐 꺼짐",
     success_message="정답입니다!"
 )
 
