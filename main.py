@@ -3,6 +3,7 @@ import streamlit as st
 
 
 # Gemini 설정
+# 'AIzaSyBUb315t4UmesRgf3xhNnyW15yFh_0KO1M'는 예시 키입니다. 실제로는 보안이 유지되어야 합니다.
 genai.configure(api_key="AIzaSyBUb315t4UmesRgf3xhNnyW15yFh_0KO1M") 
 @st.cache_resource
 def load_model():
@@ -28,6 +29,11 @@ class PuzzleGame:
         self.game_over = False
 
     def current_puzzle(self):
+        # 현재 인덱스가 퍼즐 목록의 범위를 초과하지 않도록 보호
+        if self.current_index >= len(self.puzzles):
+             # 게임 오버 상태이므로 마지막 퍼즐을 반환하거나 오류 처리를 할 수 있지만, 
+             # Streamlit의 메인 루프에서 game_over를 먼저 확인하므로 이 로직은 안전합니다.
+             return self.puzzles[-1] 
         return self.puzzles[self.current_index]
 
     def check_answer(self, user_answer):
@@ -36,7 +42,8 @@ class PuzzleGame:
             self.current_index += 1
             if self.current_index >= len(self.puzzles):
                 self.game_over = True
-                return  None
+                # ⭐ 마지막 퍼즐 정답 시, 게임 종료 메시지를 명확히 반환
+                return current.success_message + "\n\n🎉 모든 퍼즐을 해결했습니다!"
             else:
                 return current.success_message + "\n\n👉 다음 퍼즐로 이동합니다!"
         else:
@@ -130,6 +137,9 @@ if not game.game_over:
 
     if answer:
         result = game.check_answer(answer)
+        
+        # ⭐ 게임 오버 메시지 확인 로직 추가
+        is_game_finished = "모든 퍼즐을 해결했습니다!" in result
 
         if "오답" in result:
             st.error(result)
@@ -146,10 +156,9 @@ if not game.game_over:
             st.success(result)
             st.session_state.chat_history.append(result)
 
-            # 다음 퍼즐로 이동 시 rerun
-            if not game.game_over:
+            # ⭐ 다음 퍼즐로 이동 시, game_over가 아니면서 '게임 종료 메시지'가 아닐 때만 rerun
+            if not game.game_over and not is_game_finished:
                 st.rerun()
 
 else:
     st.success("🏆 축하합니다! 모든 퍼즐을 해결했습니다!", icon="🎉")
-    
