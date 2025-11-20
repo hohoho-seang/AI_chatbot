@@ -17,6 +17,7 @@ class Puzzle:
         self.question = question
         self.answer = answer
         self.success_message = success_message
+        self.image = image 
 
 class PuzzleGame:
     def __init__(self, puzzles):
@@ -40,13 +41,6 @@ class PuzzleGame:
             return "❌ 오답입니다. 다시 시도하세요!"
 
 
-class Puzzle:
-    def __init__(self, title, question, answer, success_message, image=None):
-        self.title = title
-        self.question = question
-        self.answer = answer
-        self.success_message = success_message
-        self.image = image 
 
 # 퍼즐 만들기
 puzzle1 = Puzzle(
