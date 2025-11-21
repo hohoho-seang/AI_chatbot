@@ -135,7 +135,7 @@ if not game.game_over:
         # ▣ 정답 (result == None → 마지막 퍼즐)
         if result is None:
             if game.game_over:
-                st.success("🏆 축하합니다! 모든 퍼즐을 해결했습니다! 다음방으로 넘어가실 수 있습니다", icon="🎉")
+                st.success("🏆 축하합니다! 모든 퍼즐을 해결했습니다 비밀번호는 7932 입니다", icon="🎉")
             else:
                 st.success(current.success_message)
                 st.rerun()
